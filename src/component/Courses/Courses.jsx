@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import Course from './Course';
 import CourseDetails from '../course-buy-details/CourseDetails';
+import toast, { Toaster } from 'react-hot-toast';
 const Courses = () => {
 
     const [courses, setCourses] = useState([]);
@@ -21,7 +22,7 @@ const Courses = () => {
 
 
 
-    const handleSelectBtn = (id, select, time, price) => {
+    const handleSelectBtn = (select, time, price) => {
         const totalSelected = [...selected, select];
 
         // console.log(selected);
@@ -33,13 +34,23 @@ const Courses = () => {
 
         const totalAmount = amount + price;
 
-        if (limit < 0 || totalTime > 20) {
-            alert('hee hee hee')
+
+// const match = ;
+// console.log(match)
+
+
+
+        if (limit < 0 || totalTime > 20 ) {
+            toast.error('you have to follow the rule');
         }
-        else {
+        else if(selected.includes(select))
+        {
+            toast.error('you can`t buy same  course  twice');
+        }
+        else{
+           setSelected(totalSelected);
             setLimitTime(limit);
             setHour(totalTime);
-            setSelected(totalSelected);
             setAmount(totalAmount);
         }
 
@@ -60,6 +71,7 @@ const Courses = () => {
 
                 <div style={{ width: 350 }} >
                     <CourseDetails course={selected} hour={hour} limitTime={limitTime} amount={amount} ></CourseDetails>
+                    <Toaster />
                 </div>
 
             </div>

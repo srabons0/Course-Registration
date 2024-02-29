@@ -13,7 +13,7 @@ const Course = ({ course, handleSelectBtn }) => {
                 <h1 className='text-xl font-semibold text-slate-500'> Price : {price}</h1>
                 <h1 className='text-xl font-semibold text-slate-500'> Credit : {time}hr</h1>
             </div>
-            <button className='w-72 bg-blue-500 text-white h-10 rounded-lg mt-5 hover:bg-blue-600 hover:border-blue-800 hover:border-2' onClick={() => handleSelectBtn(id,course, course.time, price)}>Select</button>
+            <button className='w-72 bg-blue-500 text-white h-10 rounded-lg mt-5 hover:bg-blue-600 hover:border-blue-800 hover:border-2' onClick={() => handleSelectBtn(course, course.time, price)}>Select</button>
         </div>
     );
 };

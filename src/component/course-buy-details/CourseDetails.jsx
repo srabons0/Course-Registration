@@ -4,6 +4,8 @@ import CourseSelected from './CourseSelected';
 
 const CourseDetails = ({ course, hour, limitTime, amount }) => {
     // console.log(course);
+
+    
     return (
 
         <div className='rounded-xl w-96 bg-white p-5'>

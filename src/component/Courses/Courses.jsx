@@ -12,26 +12,37 @@ const Courses = () => {
             .then(data => setCourses(data));
     }
 
-
         , [])
 
     const [selected, setSelected] = useState([]);
-
     const [hour, setHour] = useState(0);
+    const [limitTime, setLimitTime] = useState(20);
+    const [amount, setAmount] = useState(0);
 
-const [limitTime, setLimitTime] = useState(20);
 
-    const handleSelectBtn = (select, time) => {
+
+    const handleSelectBtn = (id, select, time, price) => {
         const totalSelected = [...selected, select];
-        setSelected(totalSelected);
+
         // console.log(selected);
         //////// // time ////////////////////
         const totalTime = hour + time
-        setHour(totalTime);
-        // console.log(hour); 
         const limit = limitTime - time;
-        setLimitTime(limit)
-        console.log(limitTime);
+        // console.log(hour); 
+        // console.log(limitTime);
+
+        const totalAmount = amount + price;
+
+        if (limit < 0 || totalTime > 20) {
+            alert('hee hee hee')
+        }
+        else {
+            setLimitTime(limit);
+            setHour(totalTime);
+            setSelected(totalSelected);
+            setAmount(totalAmount);
+        }
+
     };
 
 
@@ -39,7 +50,7 @@ const [limitTime, setLimitTime] = useState(20);
     return (
         <div>
 
-            <div className='flex p-12'>
+            <div className='flex p-11'>
 
                 <div style={{ width: 1200 }} className='grid grid-cols-3 gap-y-6 '>
                     {
@@ -47,8 +58,8 @@ const [limitTime, setLimitTime] = useState(20);
                     }
                 </div>
 
-                <div style={{ width: 350 }} className='rounded-xl w-96 bg-white p-5'>
-                    <CourseDetails course={selected} hour={hour} limitTime={limitTime} ></CourseDetails>
+                <div style={{ width: 350 }} >
+                    <CourseDetails course={selected} hour={hour} limitTime={limitTime} amount={amount} ></CourseDetails>
                 </div>
 
             </div>
